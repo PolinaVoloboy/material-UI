@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core'
+import { Avatar, makeStyles } from '@material-ui/core'
 import Drawer from '@material-ui/core/Drawer'
 import Typography from '@material-ui/core/Typography'
 import { useHistory, useLocation } from 'react-router-dom'
@@ -43,7 +43,10 @@ const useStyles = makeStyles((theme) => {
     date: {
       flexGrow: 1
     },
-    toolbar: theme.mixins.toolbar
+    toolbar: theme.mixins.toolbar,
+    avatar: {
+      marginLeft: theme.spacing(2)
+    }
   }
 })
 
@@ -79,6 +82,7 @@ export default function Layout({ children }) {
             Today is the {format(new Date(), 'do MMMM Y')}
           </Typography>
           <Typography>Polly</Typography>
+          <Avatar src="/kotikk.jpg" className={classes.avatar}/>
         </Toolbar>
       </AppBar>
 
@@ -102,7 +106,7 @@ export default function Layout({ children }) {
               button 
               key={item.text} 
               onClick={() => history.push(item.path)}
-              className={location.pathname == item.path ? classes.active : null}
+              className={location.pathname === item.path ? classes.active : null}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
